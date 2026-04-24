@@ -1,0 +1,280 @@
+/* =========================================================
+   BASE SITE (inchangé)
+   ========================================================= */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: #cce7ff;
+  color: #333;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.form-container, .search-container, .export-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+input, button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+button {
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background: #45a049;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+tr:hover {
+  background: #f1f1f1;
+}
+
+/* =========================================================
+   MENU RÉSEAUX SOCIAUX — MODERNE & ANIMÉ
+   -----------------------------------------------
+   POUR CHANGER LE FOND DU MENU : modifier --social-menu-bg
+   (couleur unie, gradient, image, etc.)
+   ========================================================= */
+:root {
+  /* ===== FOND DU MENU (modifie ici) ===== */
+  --social-menu-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #6dd5ed 100%);
+
+  /* ===== Options secondaires ===== */
+  --social-menu-radius: 60px;
+  --social-menu-padding: 10px 14px;
+  --social-menu-gap: 10px;
+  --social-menu-text: #ffffff;
+  --social-menu-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --social-menu-border: 1px solid rgba(255, 255, 255, 0.25);
+
+  /* Couleurs de marque (hover) */
+  --c-pinterest: #e60023;
+  --c-flickr:    #ff0084;
+  --c-tumblr:    #36465d;
+  --c-x:         #000000;
+  --c-youtube:   #ff0000;
+}
+
+.social-menu {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+  padding: var(--social-menu-padding);
+  background: var(--social-menu-bg);
+  background-size: 200% 200%;
+  border-radius: var(--social-menu-radius);
+  border: var(--social-menu-border);
+  box-shadow: var(--social-menu-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: max-content;
+  max-width: 95%;
+  position: relative;
+  overflow: hidden;
+  animation: socialMenuFlow 12s ease infinite;
+}
+
+/* Halo lumineux qui tourne autour du menu */
+.social-menu::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 100%
+  );
+  animation: socialHalo 8s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.social-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--social-menu-gap);
+  position: relative;
+  z-index: 1;
+}
+
+.social-menu ul li {
+  margin: 0;
+}
+
+.social-menu ul li a {
+  --brand: rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 40px;
+  text-decoration: none;
+  color: var(--social-menu-text);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.35s ease,
+    box-shadow 0.35s ease,
+    color 0.35s ease;
+  animation: socialFloat 4s ease-in-out infinite;
+}
+
+/* Décalage d'animation par item — effet vague */
+.social-menu ul li:nth-child(1) a { animation-delay: 0s; }
+.social-menu ul li:nth-child(2) a { animation-delay: 0.3s; }
+.social-menu ul li:nth-child(3) a { animation-delay: 0.6s; }
+.social-menu ul li:nth-child(4) a { animation-delay: 0.9s; }
+.social-menu ul li:nth-child(5) a { animation-delay: 1.2s; }
+.social-menu ul li:nth-child(6) a { animation-delay: 1.5s; }
+
+/* Reflet brillant qui passe sur chaque item */
+.social-menu ul li a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.social-menu ul li a:hover {
+  background: var(--brand);
+  color: #fff;
+  transform: translateY(-6px) scale(1.08);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.3),
+    0 0 20px var(--brand);
+  animation-play-state: paused;
+}
+
+.social-menu ul li a:hover::before {
+  left: 120%;
+}
+
+.social-menu ul li a:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Couleurs de marque (data-network ajouté par le script) */
+.social-menu ul li a[data-network="pinterest"] { --brand: var(--c-pinterest); }
+.social-menu ul li a[data-network="flickr"]    { --brand: var(--c-flickr); }
+.social-menu ul li a[data-network="tumblr"]    { --brand: var(--c-tumblr); }
+.social-menu ul li a[data-network="x"]         { --brand: var(--c-x); }
+.social-menu ul li a[data-network="youtube"]   { --brand: var(--c-youtube); }
+
+/* Icônes SVG injectées par script.js */
+.social-menu ul li a svg.social-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex-shrink: 0;
+}
+
+.social-menu ul li a:hover svg.social-icon {
+  transform: rotate(360deg) scale(1.2);
+}
+
+/* Ripple au clic (géré par script.js) */
+.social-menu ul li a .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: socialRipple 0.7s ease-out;
+  pointer-events: none;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes socialMenuFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes socialHalo {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes socialFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+@keyframes socialRipple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 640px) {
+  .social-menu {
+    border-radius: 30px;
+    padding: 8px;
+  }
+  .social-menu ul {
+    gap: 6px;
+  }
+  .social-menu ul li a {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .social-menu ul li a svg.social-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Respect préférence utilisateur */
+@media (prefers-reduced-motion: reduce) {
+  .social-menu,
+  .social-menu::before,
+  .social-menu ul li a {
+    animation: none !important;
+  }
+  .social-menu ul li a:hover svg.social-icon {
+    transform: none;
+  }
+}

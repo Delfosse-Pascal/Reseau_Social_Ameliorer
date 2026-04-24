@@ -1,0 +1,110 @@
+regarde mon menu reseaux sociaux je veux completement le moderniser 
+il dois avoir du mouvement et etre original
+il dois avoir un fond du menu modifiable facilement
+arrange les 2 fichiers style.css et script.js car je ne veux pas devoir modifier les milliers de page html de mon site
+
+mon site sur mon index https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/index.html
+https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/script.js
+https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/style.css
+
+******
+contenu de style.css a la base du site 
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+background: #cce7ff; /* Bleu pastel */
+  color: #333;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.form-container, .search-container, .export-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+input, button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+button {
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background: #45a049;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+tr:hover {
+  background: #f1f1f1;
+}
+
+************
+contenu de script.js  a la base du site 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('.social-menu ul li a');
+
+    links.forEach(link => {
+        link.addEventListener('mouseover', () => {
+            link.style.backgroundColor = '#777';
+        });
+
+        link.addEventListener('mouseout', () => {
+            link.style.backgroundColor = '';
+        });
+    });
+});
+(function () {
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname;
+
+    // Supprimer index.html
+    url = url.replace(/index\.html$/i, '');
+
+    // Créer la balise canonique
+    var link = document.createElement('link');
+    link.rel = 'canonical';
+    link.href = url;
+
+    document.head.appendChild(link);
+})();
+(function () {
+    var path = window.location.pathname;
+    var page = path.substring(path.lastIndexOf('/') + 1) || 'Accueil';
+
+    page = page.replace('.html', '')
+               .replace(/[-_]/g, ' ')
+               .replace(/\b\w/g, function (l) { return l.toUpperCase(); });
+
+    document.title = page + ' – Le site de Pascal Delfosse - Artiste Contemporain';
+})();
+
+
+************
+<!-- Lier le menu social -->
+  <link rel="stylesheet" type="text/css" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/style.css">
+  <script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/script.js"></script>
+
+<!-- menu social -->              
+  <nav class="social-menu">
+    <ul>
+      <li><a href="https://fr.pinterest.com/pascal509/mes-tableaux-tous-genre/" target="_blank">Pinterest</a></li>
+      <li><a href="https://www.flickr.com/photos/delfossepascal" target="_blank">Flickr</a></li>
+      <li><a href="https://www.tumblr.com/lestoilesdepascal" target="_blank">Tumblr</a></li>
+      <li><a href="https://x.com/PascalDelfossee" target="_blank">X</a></li>
+      <li><a href="https://www.youtube.com/c/DelfossePascal" target="_blank">YouTube</a></li>
+    </ul> 
+  </nav>
+  

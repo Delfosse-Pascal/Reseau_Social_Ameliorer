@@ -1,0 +1,40 @@
+# Images
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.webp
+*.svg
+*.ico
+*.tif
+*.tiff
+*.heic
+
+# Videos
+*.mp4
+*.webm
+*.mov
+*.avi
+*.mkv
+*.wmv
+*.flv
+*.m4v
+
+# Audio
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.aac
+*.m4a
+*.wma
+
+# OS / editor
+Thumbs.db
+.DS_Store
+desktop.ini
+*.swp
+*.swo
+
+# Garder tiroirs (sous-dossiers) — ne rien ignorer de structurel

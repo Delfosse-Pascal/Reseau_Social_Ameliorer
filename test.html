@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Menu Réseaux Sociaux</title>
+
+  <!-- CSS : version locale d'abord, version serveur en secours -->
+  <link rel="stylesheet" type="text/css" href="style.css?v=3">
+  <link rel="stylesheet" type="text/css" href="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/style.css?v=3">
+</head>
+<body>
+
+  <h1>Test — Menu Réseaux Sociaux Moderne</h1>
+
+  <p style="text-align:center;">
+    Survolez les boutons → couleur de marque, lift, glow, icône qui tourne 360°.<br>
+    Cliquez → effet ripple.
+  </p>
+
+  <!-- Menu social identique au site -->
+  <nav class="social-menu">
+    <ul>
+      <li><a href="https://fr.pinterest.com/pascal509/mes-tableaux-tous-genre/" target="_blank">Pinterest</a></li>
+      <li><a href="https://www.flickr.com/photos/delfossepascal" target="_blank">Flickr</a></li>
+      <li><a href="https://www.tumblr.com/lestoilesdepascal" target="_blank">Tumblr</a></li>
+      <li><a href="https://x.com/PascalDelfossee" target="_blank">X</a></li>
+      <li><a href="https://www.youtube.com/c/DelfossePascal" target="_blank">YouTube</a></li>
+    </ul>
+  </nav>
+
+  <!-- Zone diagnostic -->
+  <div id="diag" style="max-width:700px;margin:30px auto;padding:15px;background:#fff;border-radius:10px;font-family:monospace;font-size:13px;"></div>
+
+  <!-- JS : version locale d'abord, version serveur en secours -->
+  <script src="script.js?v=3"></script>
+  <script src="https://filedn.eu/llN3kr5vmyEBPIWCwFj3O6h/Site_Web/script.js?v=3"></script>
+
+  <!-- Auto-diagnostic -->
+  <script>
+    (function () {
+      const diag = document.getElementById('diag');
+      const lines = [];
+
+      // 1. CSS chargé ?
+      const menu = document.querySelector('.social-menu');
+      const cs = menu ? getComputedStyle(menu) : null;
+      const bgOK = cs && cs.background && cs.background.includes('gradient');
+      lines.push((bgOK ? '✅' : '❌') + ' CSS .social-menu appliqué : ' + (bgOK ? 'OUI (gradient détecté)' : 'NON'));
+
+      // 2. Variable CSS présente ?
+      const varVal = cs ? cs.getPropertyValue('--social-menu-bg') : '';
+      lines.push((varVal ? '✅' : '❌') + ' Variable --social-menu-bg : ' + (varVal.trim() || 'absente'));
+
+      // 3. JS exécuté ? (icônes injectées)
+      const firstLink = document.querySelector('.social-menu ul li a');
+      const hasIcon = firstLink && firstLink.querySelector('svg.social-icon');
+      lines.push((hasIcon ? '✅' : '❌') + ' JS enrichissement : ' + (hasIcon ? 'OUI (icônes SVG injectées)' : 'NON'));
+
+      // 4. data-network posé ?
+      const net = firstLink ? firstLink.getAttribute('data-network') : null;
+      lines.push((net ? '✅' : '❌') + ' data-network : ' + (net || 'absent'));
+
+      // 5. Fichiers chargés
+      const sheets = Array.from(document.styleSheets).map(s => s.href).filter(Boolean);
+      const scripts = Array.from(document.scripts).map(s => s.src).filter(Boolean);
+      lines.push('📄 CSS chargés : <br>&nbsp;&nbsp;' + sheets.join('<br>&nbsp;&nbsp;'));
+      lines.push('📜 JS chargés : <br>&nbsp;&nbsp;' + scripts.join('<br>&nbsp;&nbsp;'));
+
+      diag.innerHTML = '<b>Diagnostic :</b><br>' + lines.join('<br>');
+    })();
+  </script>
+
+</body>
+</html>
